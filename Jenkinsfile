@@ -14,20 +14,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'composer install'
+                bat 'composer install'
             }
         }
 
         stage('Run PHPUnit') {
             steps {
-                sh './vendor/bin/phpunit --configuration phpunit.xml'
+                bat 'vendor\\bin\\phpunit --configuration phpunit.xml'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner'
+                    bat 'sonar-scanner'
                 }
             }
         }
